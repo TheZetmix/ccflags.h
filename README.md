@@ -34,5 +34,5 @@ Usage: ./test [options]
 ```
 # Installation:
 ``` console 
-$ make install # Moves ccflags.h to /usr/include
+$ make install
 ```
