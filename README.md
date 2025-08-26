@@ -28,7 +28,7 @@ $ ./test -st0
 0
 $ ./test -st1
 1
-$./test
+$ ./test
 Error: Expected at least 1 arguments, but got only 0
 Usage: ./test [options]
 ```
