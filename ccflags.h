@@ -46,15 +46,15 @@ char *cc_getarg(char *arg) {
     __check_init();
     for (int i = 0; i < __CC_ARGC; ++i) {
         if (!strcmp(arg, __CC_ARGV[i])) {
-            if (i+1 < __CC_ARGC) return __CC_ARGV[i+1];
-            else if (__CC_ARGV[i+i][0] == '-') {
+            if (i+1 >= __CC_ARGC) {
                 printf("Error: Missed argument after %s\n", arg);
                 exit(EXIT_FAILURE);
             }
-            else {
-                printf("Error: Missed argument after %s\n", arg);
+            if (__CC_ARGV[i+1][0] == '-') {
+                printf("Error: Invalid argument after %s\n", arg);
                 exit(EXIT_FAILURE);
             }
+            return __CC_ARGV[i+1];
         }
     }
     printf("Error: Argument not found: %s\n", arg);
