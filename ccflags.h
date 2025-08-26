@@ -29,7 +29,7 @@ void cc_set_minimum_flags(int count) {
     }
 }
 
-int cc_arg(char *arg) {
+int cc_arg(const char *arg) {
     __check_init();
     for (int i = 0; i < __CC_ARGC; ++i) {
         if (!strcmp(arg, __CC_ARGV[i])) return 1;
@@ -37,12 +37,12 @@ int cc_arg(char *arg) {
     return 0;
 }
 
-int cc_argexp(char *arg, char *exp) {
+int cc_argexp(const char *arg, const char *exp) {
     __check_init();
     return (cc_arg(arg) || cc_arg(exp));
 }
 
-char *cc_getarg(char *arg) {
+char *cc_getarg(const char *arg) {
     __check_init();
     for (int i = 0; i < __CC_ARGC; ++i) {
         if (!strcmp(arg, __CC_ARGV[i])) {
