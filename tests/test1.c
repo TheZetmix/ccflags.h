@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
     if (cc_argexp("-t", "--test")) {
         test = strtol(cc_getarg("-t"), NULL, 10);
     }
+    if (cc_argexp("-t0", "-set-test-0")) test = 0;
     printf("%d\n", test);
     
     return 0;
