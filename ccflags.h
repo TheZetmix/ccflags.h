@@ -8,6 +8,7 @@
 int __CC_ARGC;
 char **__CC_ARGV;
 char *__CC_DESCRIPTION;
+int __CC_USAGE_ENABLED = 1;
 
 void __check_init() {
     if (!__CC_ARGV) {
@@ -26,12 +27,16 @@ void cc_set_description(char *desc) {
     __CC_DESCRIPTION = desc;
 }
 
+void cc_disable_usage() {
+    __CC_USAGE_ENABLED = 0;
+}
+
 void cc_set_minimum_flags(int count) { __check_init();
     if (__CC_ARGC < count+1) {
         printf("Error: Expected at least %d arguments, but got only %d\n",
                count, __CC_ARGC-1);
-        if (__CC_DESCRIPTION) printf("%s\n", __CC_DESCRIPTION);
-        printf("Usage: %s [options]\n", __CC_ARGV[0]);
+        if (__CC_DESCRIPTION)   printf("%s\n", __CC_DESCRIPTION);
+        if (__CC_USAGE_ENABLED) printf("Usage: %s [options]\n", __CC_ARGV[0]);
         exit(EXIT_FAILURE);
     }
 }
