@@ -69,3 +69,34 @@ char *cc_getarg(const char *arg) { __check_init();
     printf("Error: Argument not found: %s\n", arg);
     exit(EXIT_FAILURE);
 }
+
+char *cc_getargexp(const char *arg1, const char *arg2) { __check_init();
+    for (int i = 0; i < __CC_ARGC; ++i) {
+        if (!strcmp(arg1, __CC_ARGV[i])) {
+            if (i+1 >= __CC_ARGC) {
+                printf("Error: Missed argument after %s\n", arg1);
+                exit(EXIT_FAILURE);
+            }
+            if (__CC_ARGV[i+1][0] == '-') {
+                printf("Error: Invalid argument after %s\n", arg1);
+                exit(EXIT_FAILURE);
+            }
+            return __CC_ARGV[i+1];
+        }
+    }
+    for (int i = 0; i < __CC_ARGC; ++i) {
+        if (!strcmp(arg2, __CC_ARGV[i])) {
+            if (i+1 >= __CC_ARGC) {
+                printf("Error: Missed argument after %s\n", arg2);
+                exit(EXIT_FAILURE);
+            }
+            if (__CC_ARGV[i+1][0] == '-') {
+                printf("Error: Invalid argument after %s\n", arg2);
+                exit(EXIT_FAILURE);
+            }
+            return __CC_ARGV[i+1];
+        }
+    }
+    printf("Error: Arguments not found: %s or %s\n", arg1, arg2);
+    exit(EXIT_FAILURE);
+}

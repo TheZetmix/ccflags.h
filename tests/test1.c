@@ -14,6 +14,6 @@ int main(int argc, char **argv) {
     }
     if (cc_argexp("-t0", "-set-test-0")) test = 0;
     printf("%d\n", test);
-    
+   
     return 0;
 }
